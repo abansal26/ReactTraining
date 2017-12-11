@@ -7,7 +7,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      display: false
+      display: false,
+      button: true
     };
   }
 
@@ -18,8 +19,8 @@ class App extends React.Component {
   onInputChanged = (value, property) => {
     this.setState({
       [property]: value,
-      display: false
-    });
+      display: false,
+    }, () => this.setState({button: this.isValid()}));
   }
 
   isValid = () => {
@@ -28,6 +29,13 @@ class App extends React.Component {
     const regexEmail = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
     return (!((regexEmail.test(email)) && (!!_.trim(name)) && (!!_.trim(adress))
       && (regexPhNo.test(phNo))));
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if ((this.state.button !== nextState.button) || (this.state.display !== nextState.display) ||
+      (this.state.email !== nextState.email) || (this.state.phNo !== nextState.phNo))
+     return true;
+    return false;
   }
 
   render() {
@@ -46,7 +54,7 @@ class App extends React.Component {
           <br/>
           <button
             type="button"
-            disabled={this.isValid()}
+            disabled={this.state.button}
             onClick={this.handleSubmit}>
             Submit
           </button>
