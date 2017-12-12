@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function ErrorMessage(props) {
   const regexPhNo = /^[0-9]{10}$/;
@@ -8,6 +9,11 @@ function ErrorMessage(props) {
   if(props.name == "phNo" && !regexPhNo.test(props.data))
     return <span style={{color: "red"}}>Invalid Phone Number</span>;
   return null;
+}
+
+ErrorMessage.propTypes = {
+  name: PropTypes.string.isRequired,
+  data: PropTypes.string.isRequired
 }
 
 export default ErrorMessage;
