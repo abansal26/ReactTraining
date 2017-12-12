@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class Inputvalue extends React.Component {
   constructor(props) {
@@ -24,4 +25,10 @@ export default class Inputvalue extends React.Component {
       </div>
     )
   }
+}
+
+Inputvalue.propTypes = {
+  name: PropTypes.string.isRequired,
+  property: PropTypes.string.isRequired,
+  callbackParent: PropTypes.func.isRequired
 }
