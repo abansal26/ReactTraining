@@ -1,0 +1,14 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "backend for reactApp",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "author": "Akshay Bansal",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
