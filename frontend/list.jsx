@@ -12,11 +12,6 @@ import {
 import _ from 'lodash';
 
 export default class List extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {}
-  }
-
   componentWillReceiveProps(nextProps) {
     const { list } = nextProps;
     this.setState({list, index: list.length})
@@ -27,7 +22,7 @@ export default class List extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return nextState.index !== this.state.index
+    return (!this.state || nextState.index !== this.state.index)
   }
 
   render() {
@@ -47,7 +42,7 @@ export default class List extends React.Component {
             </TableRow>
           </TableHeader>
           <TableBody displayRowCheckbox={false}>
-            {
+            {(this.state) ?
               _.map(this.state.list, (item, index) => {
                 return (
                   <TableRow key={index.toString()}>
@@ -62,7 +57,7 @@ export default class List extends React.Component {
                     </TableRowColumn>
                   </TableRow>
                 )
-              })
+              }) : null
             }
           </TableBody>
         </Table>
